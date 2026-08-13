@@ -64,7 +64,7 @@ class DetectiveBook extends Book {
   }
 }
 
-//Задача 2. Библиотека
+// Задача 2. Библиотека
 
 class Library {
   constructor(name) {
@@ -97,7 +97,7 @@ class Library {
   }
 }
 
-// Задача 3. Журнал успеваемости 
+// Задача 3. Журнал успеваемости
 
 class Student {
   constructor(name) {
@@ -135,3 +135,27 @@ class Student {
     return sumOfAverages / subjects.length;
   }
 }
+
+// ===== Тестовый сценарий =====
+
+const library = new Library("Районная библиотека");
+
+library.addBook(new DetectiveBook("Артур Конан Дойл", "Шерлок Холмс", 1919, 1008));
+library.addBook(new FantasticBook("Аркадий и Борис Стругацкие", "Пикник на обочине", 1972, 168));
+library.addBook(new NovelBook("Герберт Уэллс", "Машина времени", 1895, 138));
+library.addBook(new Magazine("Мурзилка", 1924, 60));
+
+const book1919 = library.findBookBy("releaseDate", 1919);
+console.log("Книга 1919 года:", book1919 ? book1919.name : "не найдена");
+
+const givenBook = library.giveBookByName("Пикник на обочине");
+console.log("Выдана книга:", givenBook.name);
+
+givenBook.state = 20;
+console.log("Состояние после повреждения:", givenBook.state);
+
+givenBook.fix();
+console.log("Состояние после восстановления:", givenBook.state);
+
+library.addBook(givenBook);
+console.log("Книга добавлена обратно:", library.findBookBy("name", "Пикник на обочине") ? "да" : "нет");
